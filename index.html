@@ -1,279 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariana & Javier</title>
 
-<title>Invitación Demo | Boreal</title>
+  <style>
+    * { box-sizing: border-box; }
 
-<style>
-* {
-  box-sizing: border-box;
-}
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f7f1e8;
+      color: #6f5433;
+    }
 
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background: #f3eadc;
-  color: #4b3a2f;
-  min-height: 100vh;
-}
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-.opening {
-  position: fixed;
-  inset: 0;
-  background: #e8dccb;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 10;
-  transition: opacity 0.8s ease;
-}
+    .screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.9), transparent 30%),
+        radial-gradient(circle at 85% 90%, rgba(255,255,255,.7), transparent 28%),
+        #f7f1e8;
+    }
 
-.envelope {
-  font-size: 80px;
-  margin-bottom: 20px;
-}
+    .card {
+      width: min(100%, 520px);
+      text-align: center;
+      animation: fadeIn 1.2s ease both;
+    }
 
-.opening h1 {
-  font-size: 32px;
-  margin: 10px;
-}
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
 
-.opening p {
-  font-size: 16px;
-  margin-bottom: 30px;
-}
+    h1 {
+      margin: 0 0 22px;
+      font-size: clamp(30px, 8vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+    }
 
-.open-button {
-  border: 1px solid #8b6f55;
-  background: #8b6f55;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-}
+    .heart {
+      margin: 12px auto 24px;
+      font-size: 24px;
+    }
 
-.invitation {
-  display: none;
-  min-height: 100vh;
-  padding: 60px 20px;
-  text-align: center;
-}
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.55 / 1;
+      margin: 0 auto;
+      background: #eee3d2;
+      border-radius: 5px;
+      box-shadow: 0 18px 45px rgba(91, 67, 38, .20);
+      border: 1px solid rgba(164, 126, 72, .35);
+      overflow: visible;
+    }
 
-.invitation h1 {
-  font-size: 42px;
-  margin-bottom: 5px;
-}
+    .flap {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 55%;
+      background: #f4eadb;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-top: 1px solid rgba(164,126,72,.35);
+      transform-origin: top center;
+      transition: transform 1s cubic-bezier(.22,.8,.25,1);
+      z-index: 3;
+    }
 
-.date {
-  font-size: 20px;
-  margin-bottom: 40px;
-}
+    .wax {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #b58b4b;
+      color: #fff8eb;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(80,55,25,.25);
+      border: 5px solid #d1ae72;
+      z-index: 4;
+      transition: opacity .45s ease, transform .7s ease;
+    }
 
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  max-width: 500px;
-  margin: auto;
-}
+    .open .flap {
+      transform: rotateX(180deg);
+    }
 
-.info-button {
-  background: white;
-  border: 1px solid #b99d80;
-  color: #5b4636;
-  padding: 13px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-}
+    .open .wax {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.65);
+    }
 
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(55, 40, 30, 0.45);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 20;
-}
+    .instruction {
+      margin: 26px 0 18px;
+      font-size: 15px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
 
-.modal-content {
-  background: #fffaf3;
-  width: 100%;
-  max-width: 420px;
-  padding: 35px 25px;
-  border-radius: 20px;
-  position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-}
+    button {
+      border: 1px solid #b58b4b;
+      background: #f8f0e4;
+      color: #6f5433;
+      padding: 17px 30px;
+      border-radius: 14px;
+      font: inherit;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(91,67,38,.12);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
 
-.close {
-  position: absolute;
-  right: 18px;
-  top: 12px;
-  font-size: 28px;
-  cursor: pointer;
-}
-</style>
+    button:active {
+      transform: scale(.97);
+    }
+
+    .invite {
+      display: none;
+      min-height: 100vh;
+      padding: 60px 22px;
+      text-align: center;
+      animation: fadeIn 1s ease both;
+    }
+
+    .invite.show {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .invite h2 {
+      font-size: clamp(38px, 10vw, 64px);
+      font-weight: 400;
+      margin: 10px 0;
+    }
+
+    .invite p {
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- PANTALLA DE APERTURA -->
+  <main class="screen" id="opening">
+    <section class="card">
+      <div class="eyebrow">Tenemos una invitación</div>
+      <h1>especial para ti</h1>
+      <div class="heart">♡</div>
 
-<div class="opening" id="opening">
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="wax">M&amp;J</div>
+      </div>
 
-  <div class="envelope">💌</div>
+      <div class="instruction">Toca para abrir</div>
 
-  <h1>Mariana & Javier</h1>
+      <button id="openButton">ABRIR INVITACIÓN</button>
+    </section>
+  </main>
 
-  <p>Tenemos una invitación especial para ti</p>
-
-  <button class="open-button" onclick="openInvitation()">
-    ABRIR INVITACIÓN
-  </button>
-
-</div>
-
-
-<!-- INVITACIÓN -->
-
-<div class="invitation" id="invitation">
-
-  <p>Con mucha alegría...</p>
-
-  <h1>Mariana & Javier</h1>
-
-  <div class="date">
-    10 · 10 · 2026
-  </div>
-
-  <div class="buttons">
-
-    <button class="info-button" onclick="showModal('story')">
-      Nuestra historia
-    </button>
-
-    <button class="info-button" onclick="showModal('ceremony')">
-      Ceremonia
-    </button>
-
-    <button class="info-button" onclick="showModal('dress')">
-      Dress Code
-    </button>
-
-    <button class="info-button" onclick="showModal('location')">
-      Ubicación
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- VENTANA NUESTRA HISTORIA -->
-
-<div class="modal" id="story">
-  <div class="modal-content">
-
-    <span class="close" onclick="closeModal('story')">×</span>
-
-    <h2>Nuestra historia</h2>
-
+  <section class="invite" id="invite">
+    <div class="eyebrow">Nuestra historia comienza aquí</div>
+    <h2>Mariana &amp; Javier</h2>
     <p>
-      Aquí podremos colocar la historia de los novios,
-      fotografías y todos los detalles que queramos.
+      Estamos felices de compartir contigo uno de los días
+      más especiales de nuestras vidas.
     </p>
+    <p>10 · 10 · 2026</p>
+  </section>
 
-  </div>
-</div>
+  <!-- Música de prueba.
+       Más adelante sustituiremos esta URL por el archivo de música de la invitación. -->
+  <audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
+  <script>
+    const button = document.getElementById("openButton");
+    const envelope = document.getElementById("envelope");
+    const opening = document.getElementById("opening");
+    const invite = document.getElementById("invite");
+    const music = document.getElementById("music");
 
-<!-- VENTANA CEREMONIA -->
+    button.addEventListener("click", async () => {
+      envelope.classList.add("open");
 
-<div class="modal" id="ceremony">
-  <div class="modal-content">
+      // El audio se intenta iniciar justo después del toque del usuario.
+      try {
+        await music.play();
+      } catch (error) {
+        console.log("La música necesita un archivo music.mp3 válido.");
+      }
 
-    <span class="close" onclick="closeModal('ceremony')">×</span>
-
-    <h2>💍 Ceremonia</h2>
-
-    <p>
-      Sábado 10 de octubre<br>
-      5:00 PM
-    </p>
-
-    <p>
-      Iglesia de ejemplo
-    </p>
-
-  </div>
-</div>
-
-
-<!-- VENTANA DRESS CODE -->
-
-<div class="modal" id="dress">
-  <div class="modal-content">
-
-    <span class="close" onclick="closeModal('dress')">×</span>
-
-    <h2>👗 Dress Code</h2>
-
-    <p>
-      Formal / Cocktail
-    </p>
-
-  </div>
-</div>
-
-
-<!-- VENTANA UBICACIÓN -->
-
-<div class="modal" id="location">
-  <div class="modal-content">
-
-    <span class="close" onclick="closeModal('location')">×</span>
-
-    <h2>📍 Ubicación</h2>
-
-    <p>
-      Aquí colocaremos el mapa y el botón
-      para abrir Google Maps.
-    </p>
-
-  </div>
-</div>
-
-
-<script>
-
-function openInvitation() {
-
-  document.getElementById("opening").style.opacity = "0";
-
-  setTimeout(function() {
-    document.getElementById("opening").style.display = "none";
-    document.getElementById("invitation").style.display = "block";
-  }, 800);
-
-}
-
-function showModal(id) {
-  document.getElementById(id).style.display = "flex";
-}
-
-function closeModal(id) {
-  document.getElementById(id).style.display = "none";
-}
-
-</script>
+      setTimeout(() => {
+        opening.style.display = "none";
+        invite.classList.add("show");
+        window.scrollTo(0, 0);
+      }, 850);
+    });
+  </script>
 
 </body>
 </html>
