@@ -424,7 +424,41 @@ body{
 
 function openCanva(){
 
-   <script>
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.add("opening");
+
+    document.getElementById("musicChoice").style.display = "block";
+
+}
+
+
+function enterWithMusic(){
+
+    const music =
+        document.getElementById("music");
+
+    music.play().catch(() => {});
+
+    window.open(
+        "https://boreal-digital-design.my.canva.site/premium-custom",
+        "_blank"
+    );
+
+}
+
+
+function enterWithoutMusic(){
+
+    window.open(
+        "https://boreal-digital-design.my.canva.site/premium-custom",
+        "_blank"
+    );
+
+}
+
+</script>
 
 const music =
     document.getElementById("music");
