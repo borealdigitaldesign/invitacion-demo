@@ -10,6 +10,7 @@
 
 <title>Emily & James</title>
 
+
 <style>
 
 /* =========================================
@@ -175,7 +176,7 @@ body{
 
 
 /* =========================================
-   LITTLE PULSE ON SEAL
+   SEAL PULSE
 ========================================= */
 
 .seal{
@@ -286,6 +287,10 @@ body{
 }
 
 
+/* =========================================
+   MUSIC TITLE
+========================================= */
+
 .music-title{
 
     font-size:
@@ -306,6 +311,10 @@ body{
 
 }
 
+
+/* =========================================
+   MUSIC BUTTONS
+========================================= */
 
 .music-button{
 
@@ -489,7 +498,10 @@ body{
          INVITATION BACKGROUND
     ================================== -->
 
-    <img src="emily_james_base_for_animation.png"
+    <img
+        class="base"
+        src="emily_james_base_for_animation.png"
+        alt="Emily and James wedding invitation">
 
 
     <!-- =================================
@@ -523,7 +535,7 @@ body{
         alt="Open invitation"
         onclick="openEnvelope()">
 
-      
+
     <!-- =================================
          MUSIC OPTIONS
     ================================== -->
@@ -580,7 +592,7 @@ body{
 
 /* =====================================
    ELEMENTS
-====================================== */
+===================================== */
 
 const stage =
     document.querySelector(".stage");
@@ -594,7 +606,7 @@ const music =
 
 /* =====================================
    OPEN ENVELOPE
-====================================== */
+===================================== */
 
 function openEnvelope(){
 
@@ -605,7 +617,7 @@ function openEnvelope(){
 
 /* =====================================
    ENTER WITH MUSIC
-====================================== */
+===================================== */
 
 function enterWithMusic(){
 
@@ -624,7 +636,7 @@ function enterWithMusic(){
 
 /* =====================================
    ENTER WITHOUT MUSIC
-====================================== */
+===================================== */
 
 function enterWithoutMusic(){
 
@@ -635,17 +647,12 @@ function enterWithoutMusic(){
 
 /* =====================================
    OPEN CANVA
-====================================== */
+===================================== */
 
 function openCanva(){
 
-    window.open(
-
-        "https://boreal-digital-design.my.canva.site/premium-custom",
-
-        "_blank"
-
-    );
+    window.location.href =
+        "https://boreal-digital-design.my.canva.site/premium-custom";
 
 }
 
