@@ -10,7 +10,12 @@
 
 <title>Emily & James | Test</title>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     box-sizing:border-box;
@@ -18,33 +23,50 @@
     padding:0;
 }
 
+
 html,
 body{
+
     width:100%;
     height:100%;
+
 }
 
+
 body{
-    font-family:Georgia, "Times New Roman", serif;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     background:#f7eee7;
+
     color:#68483a;
+
+    overflow:hidden;
+
 }
 
 
 /* =========================
-   SOBRE
+   FONDO
 ========================= */
 
 .cover{
 
     position:fixed;
+
     inset:0;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     background:
+
         radial-gradient(
             circle at 15% 15%,
             #ead2c6 0,
@@ -62,26 +84,32 @@ body{
 }
 
 
+/* =========================
+   SOBRE
+========================= */
+
 .envelope{
 
     width:340px;
+
     height:230px;
 
     position:relative;
 
     background:#eadbd0;
 
+    border-radius:5px;
+
     box-shadow:
+
         0 25px 50px
         rgba(80,50,40,.20);
-
-    border-radius:5px;
 
 }
 
 
 /* =========================
-   PAPEL
+   PAPEL INTERIOR
 ========================= */
 
 .envelope-paper{
@@ -89,9 +117,11 @@ body{
     position:absolute;
 
     width:80%;
+
     height:190px;
 
     left:10%;
+
     top:20px;
 
     background:#fffaf6;
@@ -152,6 +182,7 @@ body{
     background:#eadbd0;
 
     clip-path:
+
         polygon(
             0 0,
             50% 52%,
@@ -174,14 +205,17 @@ body{
     position:absolute;
 
     top:0;
+
     left:0;
 
     width:100%;
+
     height:125px;
 
     background:#dfcabe;
 
     clip-path:
+
         polygon(
             0 0,
             100% 0,
@@ -193,6 +227,7 @@ body{
     z-index:6;
 
     transition:
+
         transform 1s ease;
 
 }
@@ -207,9 +242,11 @@ body{
     position:absolute;
 
     width:74px;
+
     height:74px;
 
     left:50%;
+
     top:50%;
 
     transform:
@@ -234,6 +271,7 @@ body{
     cursor:pointer;
 
     box-shadow:
+
         0 8px 18px
         rgba(70,40,35,.30),
 
@@ -241,6 +279,7 @@ body{
         rgba(255,255,255,.12);
 
     animation:
+
         sealPulse 2s
         ease-in-out
         infinite;
@@ -256,7 +295,7 @@ body{
 
 
 /* =========================
-   TEXTO
+   TEXTO TAP
 ========================= */
 
 .tap{
@@ -264,6 +303,8 @@ body{
     position:fixed;
 
     top:calc(50% + 145px);
+
+    left:0;
 
     width:100%;
 
@@ -281,7 +322,7 @@ body{
 
 
 /* =========================
-   OPCIONES DE ENTRADA
+   OPCIONES DE MÚSICA
 ========================= */
 
 .music-choice{
@@ -292,7 +333,8 @@ body{
 
     top:calc(100% + 25px);
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width:320px;
 
@@ -345,6 +387,7 @@ body{
     cursor:pointer;
 
     box-shadow:
+
         0 6px 15px
         rgba(80,50,40,.10);
 
@@ -355,7 +398,8 @@ body{
 
 .music-choice button:hover{
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
 
     background:#f8eee6;
 
@@ -363,7 +407,7 @@ body{
 
 
 /* =========================
-   ANIMACIONES
+   ANIMACIÓN DEL SELLO
 ========================= */
 
 @keyframes sealPulse{
@@ -386,6 +430,10 @@ body{
 
 }
 
+
+/* =========================
+   ANIMACIÓN ABRIR SOBRE
+========================= */
 
 .opening .envelope-flap{
 
@@ -428,6 +476,7 @@ body{
 </head>
 
 
+
 <body>
 
 
@@ -435,14 +484,17 @@ body{
      SOBRE
 ========================= -->
 
-<div class="cover" id="cover">
+<div
+    class="cover"
+    id="cover">
+
 
     <div
         class="envelope"
         id="envelope">
 
 
-        <!-- PAPEL -->
+        <!-- PAPEL INTERIOR -->
 
         <div class="envelope-paper">
 
@@ -478,7 +530,8 @@ body{
 
         <button
             class="wax-seal"
-            onclick="openCanva()">
+            id="seal"
+            onclick="openEnvelope()">
 
             E
             <span>&</span>
@@ -492,6 +545,7 @@ body{
         <div
             class="music-choice"
             id="musicChoice">
+
 
             <p>
                 HOW WOULD YOU LIKE TO ENTER?
@@ -513,19 +567,26 @@ body{
 
             </button>
 
+
         </div>
 
 
     </div>
 
 
-    <div class="tap">
+    <!-- TEXTO -->
+
+    <div
+        class="tap"
+        id="tap">
 
         TAP THE SEAL TO OPEN
 
     </div>
 
+
 </div>
+
 
 
 <!-- =========================
@@ -536,7 +597,9 @@ body{
     id="music"
     src="./musica.mp3.mp3"
     loop>
+
 </audio>
+
 
 
 <!-- =========================
@@ -546,57 +609,103 @@ body{
 <script>
 
 
-function openCanva(){
+/* =========================
+   URL DE CANVA
+========================= */
 
-    const envelope =
-        document.getElementById("envelope");
+const canvaURL =
+    "https://boreal-digital-design.my.canva.site/premium-custom";
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const envelope =
+    document.getElementById("envelope");
+
+const musicChoice =
+    document.getElementById("musicChoice");
+
+const music =
+    document.getElementById("music");
+
+
+/* =========================
+   ABRIR SOBRE
+========================= */
+
+function openEnvelope(){
+
+    /* Animación */
 
     envelope.classList.add("opening");
 
 
-    document
-        .getElementById("musicChoice")
-        .style.display = "block";
+    /* Mostrar opciones */
+
+    setTimeout(() => {
+
+        musicChoice.style.display =
+            "block";
+
+    }, 700);
 
 }
 
 
+/* =========================
+   ENTRAR CON MÚSICA
+========================= */
 
 function enterWithMusic(){
 
-    const music =
-        document.getElementById("music");
+    /*
+       El clic del usuario permite
+       iniciar la música.
+    */
 
-
-    music.play().catch(() => {
+    music.play().then(() => {
 
         console.log(
-            "Music could not be started."
+            "Música iniciada."
+        );
+
+    }).catch((error) => {
+
+        console.log(
+            "No se pudo iniciar la música.",
+            error
         );
 
     });
 
 
+    /*
+       Abrimos Canva en una
+       NUEVA PESTAÑA.
+
+       Así esta página permanece
+       abierta y la música continúa.
+    */
+
     window.open(
-
-        "https://boreal-digital-design.my.canva.site/premium-custom",
-
+        canvaURL,
         "_blank"
-
     );
 
 }
 
 
+/* =========================
+   ENTRAR SIN MÚSICA
+========================= */
 
 function enterWithoutMusic(){
 
     window.open(
-
-        "https://boreal-digital-design.my.canva.site/premium-custom",
-
+        canvaURL,
         "_blank"
-
     );
 
 }
