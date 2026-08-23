@@ -80,7 +80,9 @@ body{
 }
 
 
-/* papel */
+/* =========================
+   PAPEL
+========================= */
 
 .envelope-paper{
 
@@ -137,7 +139,9 @@ body{
 }
 
 
-/* frente */
+/* =========================
+   FRENTE DEL SOBRE
+========================= */
 
 .envelope-front{
 
@@ -161,7 +165,9 @@ body{
 }
 
 
-/* solapa */
+/* =========================
+   SOLAPA
+========================= */
 
 .envelope-flap{
 
@@ -193,7 +199,7 @@ body{
 
 
 /* =========================
-   SELLO
+   SELLO DE CERA
 ========================= */
 
 .wax-seal{
@@ -269,6 +275,90 @@ body{
 
     color:#795b4d;
 
+    transition:.5s;
+
+}
+
+
+/* =========================
+   OPCIONES DE ENTRADA
+========================= */
+
+.music-choice{
+
+    position:absolute;
+
+    left:50%;
+
+    top:calc(100% + 25px);
+
+    transform:translateX(-50%);
+
+    width:320px;
+
+    text-align:center;
+
+    display:none;
+
+    z-index:20;
+
+}
+
+
+.music-choice p{
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+    color:#795b4d;
+
+}
+
+
+.music-choice button{
+
+    display:block;
+
+    width:100%;
+
+    margin:8px 0;
+
+    padding:12px 18px;
+
+    border:1px solid #c99979;
+
+    border-radius:30px;
+
+    background:#fffaf6;
+
+    color:#68483a;
+
+    font-family:Georgia,serif;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 6px 15px
+        rgba(80,50,40,.10);
+
+    transition:.3s;
+
+}
+
+
+.music-choice button:hover{
+
+    transform:translateY(-2px);
+
+    background:#f8eee6;
+
 }
 
 
@@ -341,7 +431,9 @@ body{
 <body>
 
 
-<!-- SOBRE -->
+<!-- =========================
+     SOBRE
+========================= -->
 
 <div class="cover" id="cover">
 
@@ -349,6 +441,8 @@ body{
         class="envelope"
         id="envelope">
 
+
+        <!-- PAPEL -->
 
         <div class="envelope-paper">
 
@@ -370,11 +464,17 @@ body{
         </div>
 
 
+        <!-- FRENTE -->
+
         <div class="envelope-front"></div>
 
 
+        <!-- SOLAPA -->
+
         <div class="envelope-flap"></div>
 
+
+        <!-- SELLO -->
 
         <button
             class="wax-seal"
@@ -386,20 +486,37 @@ body{
 
         </button>
 
-          <div class="music-choice" id="musicChoice">
 
-    <p>HOW WOULD YOU LIKE TO ENTER?</p>
+        <!-- OPCIONES -->
 
-    <button onclick="enterWithMusic()">
-        🎵 ENTER WITH MUSIC
-    </button>
+        <div
+            class="music-choice"
+            id="musicChoice">
 
-    <button onclick="enterWithoutMusic()">
-        ♡ ENTER WITHOUT MUSIC
-    </button>
+            <p>
+                HOW WOULD YOU LIKE TO ENTER?
+            </p>
 
 
-          </div>
+            <button
+                onclick="enterWithMusic()">
+
+                🎵 ENTER WITH MUSIC
+
+            </button>
+
+
+            <button
+                onclick="enterWithoutMusic()">
+
+                ♡ ENTER WITHOUT MUSIC
+
+            </button>
+
+        </div>
+
+
+    </div>
 
 
     <div class="tap">
@@ -411,7 +528,9 @@ body{
 </div>
 
 
-<!-- MÚSICA -->
+<!-- =========================
+     MÚSICA
+========================= -->
 
 <audio
     id="music"
@@ -420,7 +539,12 @@ body{
 </audio>
 
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
+
 
 function openCanva(){
 
@@ -429,9 +553,13 @@ function openCanva(){
 
     envelope.classList.add("opening");
 
-    document.getElementById("musicChoice").style.display = "block";
+
+    document
+        .getElementById("musicChoice")
+        .style.display = "block";
 
 }
+
 
 
 function enterWithMusic(){
@@ -439,91 +567,44 @@ function enterWithMusic(){
     const music =
         document.getElementById("music");
 
-    music.play().catch(() => {});
+
+    music.play().catch(() => {
+
+        console.log(
+            "Music could not be started."
+        );
+
+    });
+
 
     window.open(
+
         "https://boreal-digital-design.my.canva.site/premium-custom",
+
         "_blank"
+
     );
 
 }
+
 
 
 function enterWithoutMusic(){
 
     window.open(
+
         "https://boreal-digital-design.my.canva.site/premium-custom",
+
         "_blank"
+
     );
 
 }
 
-</script>
-
-const music =
-    document.getElementById("music");
-
-const envelope =
-    document.getElementById("envelope");
-
-
-/* =========================
-   INTENTAR MÚSICA AL CARGAR
-========================= */
-
-window.addEventListener("load", () => {
-
-    music.play().then(() => {
-
-        console.log("La música comenzó automáticamente.");
-
-    }).catch(() => {
-
-        console.log(
-            "El navegador bloqueó el autoplay."
-        );
-
-    });
-
-});
-
-
-/* =========================
-   CLIC EN EL SOBRE
-========================= */
-
-function openCanva(){
-
-    /* Intentar iniciar música
-       por si el navegador
-       bloqueó el autoplay */
-
-    music.play().catch(() => {
-
-        console.log(
-            "El navegador bloqueó la música."
-        );
-
-    });
-
-
-    /* Abrir sobre */
-
-    envelope.classList.add("opening");
-
-
-    /* Ir a Canva */
-
-    setTimeout(() => {
-
-        window.location.href =
-            "https://boreal-digital-design.my.canva.site/premium-custom";
-
-    }, 1400);
-
-}
 
 </script>
+
+
 </body>
 
 </html>
