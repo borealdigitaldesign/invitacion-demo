@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+e<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -581,6 +581,8 @@ function openInvitation(){
 
     document.getElementById("invitation").style.display = "block";
 
+    startMusic();
+
     window.scrollTo({
         top:0,
         behavior:"smooth"
@@ -591,22 +593,49 @@ function openInvitation(){
 
 /* Música */
 
+const music = new Audio("Y TÚ TE VAS - AUVINE.mp3");
+
+music.loop = true;
+music.volume = 0.7;
+
 let playing = false;
+
+function startMusic(){
+
+    music.play().then(() => {
+
+        playing = true;
+
+        document.getElementById("musicButton").innerHTML = "❚❚";
+
+    }).catch(() => {
+
+        console.log("La reproducción fue bloqueada.");
+
+    });
+
+}
 
 function toggleMusic(){
 
     const button =
         document.getElementById("musicButton");
 
-    playing = !playing;
-
     if(playing){
 
-        button.innerHTML = "❚❚";
+        music.pause();
+
+        playing = false;
+
+        button.innerHTML = "♪";
 
     }else{
 
-        button.innerHTML = "♪";
+        music.play();
+
+        playing = true;
+
+        button.innerHTML = "❚❚";
 
     }
 
