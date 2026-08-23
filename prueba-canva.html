@@ -412,27 +412,58 @@ body{
 
 function openCanva(){
 
-    const envelope =
-        document.getElementById("envelope");
+   <script>
 
-    const music =
-        document.getElementById("music");
+const music =
+    document.getElementById("music");
+
+const envelope =
+    document.getElementById("envelope");
+
+
+/* =========================
+   INTENTAR MÚSICA AL CARGAR
+========================= */
+
+window.addEventListener("load", () => {
+
+    music.play().then(() => {
+
+        console.log("La música comenzó automáticamente.");
+
+    }).catch(() => {
+
+        console.log(
+            "El navegador bloqueó el autoplay."
+        );
+
+    });
+
+});
+
+
+/* =========================
+   CLIC EN EL SOBRE
+========================= */
+
+function openCanva(){
+
+    /* Intentar iniciar música
+       por si el navegador
+       bloqueó el autoplay */
+
+    music.play().catch(() => {
+
+        console.log(
+            "El navegador bloqueó la música."
+        );
+
+    });
 
 
     /* Abrir sobre */
 
     envelope.classList.add("opening");
-
-
-    /* Iniciar música */
-
-    music.play().catch(() => {
-
-        console.log(
-            "Autoplay blocked"
-        );
-
-    });
 
 
     /* Ir a Canva */
@@ -447,8 +478,6 @@ function openCanva(){
 }
 
 </script>
-
-
 </body>
 
 </html>
