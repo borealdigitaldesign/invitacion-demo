@@ -8,14 +8,13 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Emily & James | Test</title>
-
+<title>Emily & James</title>
 
 <style>
 
-/* =========================
+/* =========================================
    GENERAL
-========================= */
+========================================= */
 
 *{
     box-sizing:border-box;
@@ -26,361 +25,175 @@
 html,
 body{
     width:100%;
-    height:100%;
+    min-height:100%;
 }
 
 body{
-    font-family:Georgia, "Times New Roman", serif;
-    background:#f7eee7;
-    color:#68483a;
-    overflow:hidden;
-}
 
-
-/* =========================
-   FONDO
-========================= */
-
-.cover{
-
-    position:fixed;
-    inset:0;
+    background:#f4e8df;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    background:
+    min-height:100vh;
 
-        radial-gradient(
-            circle at 15% 15%,
-            #ead2c6 0,
-            transparent 28%
-        ),
+    overflow:hidden;
 
-        radial-gradient(
-            circle at 85% 85%,
-            #e5c4b6 0,
-            transparent 30%
-        ),
-
-        #f7eee7;
+    font-family:Georgia,
+        "Times New Roman",
+        serif;
 
 }
 
 
-/* =========================
-   SOBRE
-========================= */
+/* =========================================
+   INVITATION STAGE
+========================================= */
 
-.envelope{
-
-    width:340px;
-    height:230px;
+.stage{
 
     position:relative;
 
-    background:#eadbd0;
+    width:min(
+        100vw,
+        70.64vh
+    );
 
-    box-shadow:
-        0 25px 50px
-        rgba(80,50,40,.20);
+    aspect-ratio:
+        1054 / 1492;
 
-    border-radius:5px;
-
-}
-
-
-/* Papel interior */
-
-.envelope-paper{
-
-    position:absolute;
-
-    width:80%;
-    height:190px;
-
-    left:10%;
-    top:20px;
-
-    background:#fffaf6;
-
-    text-align:center;
-
-    padding-top:55px;
-
-    z-index:2;
-
-    transition:
-        transform 1.2s ease;
+    overflow:hidden;
 
 }
 
 
-.paper-names{
+/* =========================================
+   BASE IMAGE
+========================================= */
 
-    font-size:25px;
-
-    font-style:italic;
-
-    color:#68483a;
-
-}
-
-
-.paper-names span{
-
-    color:#bd756b;
-
-}
-
-
-.paper-date{
-
-    margin-top:15px;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    color:#8c6b5c;
-
-}
-
-
-/* Frente */
-
-.envelope-front{
+.base{
 
     position:absolute;
 
     inset:0;
 
-    background:#eadbd0;
+    width:100%;
+    height:100%;
 
-    clip-path:
-        polygon(
-            0 0,
-            50% 52%,
-            100% 0,
-            100% 100%,
-            0 100%
-        );
+    object-fit:contain;
 
-    z-index:4;
+    z-index:1;
 
 }
 
 
-/* Solapa */
+/* =========================================
+   ENVELOPE BODY
+========================================= */
+
+.envelope-body{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:3;
+
+}
+
+
+/* =========================================
+   ENVELOPE FLAP
+========================================= */
 
 .envelope-flap{
 
     position:absolute;
 
-    top:0;
-    left:0;
+    inset:0;
 
     width:100%;
-    height:125px;
+    height:100%;
 
-    background:#dfcabe;
+    object-fit:contain;
 
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
+    z-index:5;
 
-    transform-origin:top;
+    transform-origin:
+        50% 28.2%;
 
-    z-index:6;
+    transform:
+        rotateX(0deg);
 
     transition:
-        transform 1s ease;
+        transform 1.2s
+        cubic-bezier(
+            .4,
+            0,
+            .2,
+            1
+        );
 
 }
 
 
-/* =========================
-   SELLO
-========================= */
+/* =========================================
+   WAX SEAL
+========================================= */
 
-.wax-seal{
+.seal{
 
     position:absolute;
 
-    width:74px;
-    height:74px;
+    left:0;
+    top:0;
 
-    left:50%;
-    top:50%;
+    width:100%;
+    height:100%;
 
-    transform:
-        translate(-50%,-50%);
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#9a554d;
-
-    color:#f8e9df;
-
-    font-family:Georgia,serif;
-
-    font-size:18px;
-
-    font-weight:bold;
+    object-fit:contain;
 
     z-index:10;
 
     cursor:pointer;
 
-    box-shadow:
+    transition:
 
-        0 8px 18px
-        rgba(70,40,35,.30),
+        opacity .5s ease,
 
-        inset 0 0 0 4px
-        rgba(255,255,255,.12);
+        transform .6s ease;
+
+}
+
+
+/* =========================================
+   LITTLE PULSE ON SEAL
+========================================= */
+
+.seal{
 
     animation:
-        sealPulse 2s
+        sealPulse 2.2s
         ease-in-out
         infinite;
 
 }
 
 
-.wax-seal span{
-
-    font-size:12px;
-
-}
-
-
-/* =========================
-   TEXTO TAP
-========================= */
-
-.tap{
-
-    position:fixed;
-
-    top:calc(50% + 145px);
-
-    width:100%;
-
-    text-align:center;
-
-    font-size:10px;
-
-    letter-spacing:4px;
-
-    color:#795b4d;
-
-    transition:.5s;
-
-}
-
-
-/* =========================
-   OPCIONES DE MÚSICA
-========================= */
-
-.music-choice{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    width:290px;
-
-    padding:25px;
-
-    background:#fffaf6;
-
-    border-radius:12px;
-
-    box-shadow:
-        0 20px 45px
-        rgba(80,50,40,.25);
-
-    text-align:center;
-
-    z-index:20;
-
-    display:none;
-
-}
-
-
-.music-choice p{
-
-    font-size:11px;
-
-    letter-spacing:2px;
-
-    margin-bottom:18px;
-
-    color:#68483a;
-
-}
-
-
-.music-choice button{
-
-    display:block;
-
-    width:100%;
-
-    margin:10px 0;
-
-    padding:12px;
-
-    border:1px solid #bd756b;
-
-    border-radius:25px;
-
-    background:#ead2c6;
-
-    color:#68483a;
-
-    font-family:Georgia,serif;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    cursor:pointer;
-
-}
-
-
-.music-choice button:hover{
-
-    background:#dfcabe;
-
-}
-
-
-/* =========================
-   ANIMACIÓN
-========================= */
-
 @keyframes sealPulse{
 
-    0%,100%{
+    0%,
+    100%{
 
         transform:
-            translate(-50%,-50%)
             scale(1);
 
     }
@@ -388,13 +201,16 @@ body{
     50%{
 
         transform:
-            translate(-50%,-50%)
-            scale(1.06);
+            scale(1.025);
 
     }
 
 }
 
+
+/* =========================================
+   OPENING ANIMATION
+========================================= */
 
 .opening .envelope-flap{
 
@@ -404,30 +220,257 @@ body{
 }
 
 
-.opening .envelope-paper{
-
-    transform:
-        translateY(-115px);
-
-}
-
-
-.opening .wax-seal{
+.opening .seal{
 
     opacity:0;
 
     transform:
-        translate(-50%,-50%)
-        scale(1.5);
+        scale(1.18);
 
-    transition:.5s;
+    pointer-events:none;
+
+    animation:none;
 
 }
 
 
-.opening .tap{
+/* =========================================
+   MUSIC CHOICES
+========================================= */
+
+.music-choice{
+
+    position:absolute;
+
+    left:8%;
+
+    width:84%;
+
+    bottom:6.2%;
+
+    z-index:20;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:9px;
 
     opacity:0;
+
+    transform:
+        translateY(20px);
+
+    pointer-events:none;
+
+    transition:
+
+        opacity .7s ease .8s,
+
+        transform .7s ease .8s;
+
+}
+
+
+.opening .music-choice{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+    pointer-events:auto;
+
+}
+
+
+.music-title{
+
+    font-size:
+        clamp(
+            9px,
+            1.55vw,
+            15px
+        );
+
+    letter-spacing:
+        3px;
+
+    color:#68483a;
+
+    text-align:center;
+
+    margin-bottom:2px;
+
+}
+
+
+.music-button{
+
+    width:100%;
+
+    max-width:470px;
+
+    min-height:42px;
+
+    padding:
+        10px
+        18px;
+
+    border-radius:30px;
+
+    border:
+        1px solid
+        #bd8b7c;
+
+    background:
+        rgba(
+            255,
+            250,
+            246,
+            .94
+        );
+
+    color:#68483a;
+
+    font-family:Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            10px,
+            1.7vw,
+            16px
+        );
+
+    letter-spacing:
+        2px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 6px 15px
+        rgba(
+            80,
+            50,
+            40,
+            .12
+        );
+
+    transition:
+
+        transform .2s ease,
+
+        background .2s ease,
+
+        box-shadow .2s ease;
+
+}
+
+
+.music-button:hover{
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #fffaf7;
+
+    box-shadow:
+        0 9px 20px
+        rgba(
+            80,
+            50,
+            40,
+            .18
+        );
+
+}
+
+
+.music-button:active{
+
+    transform:
+        scale(.98);
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(
+    max-width:600px
+){
+
+    body{
+
+        align-items:center;
+
+    }
+
+    .stage{
+
+        width:
+            min(
+                100vw,
+                70.64vh
+            );
+
+    }
+
+    .music-choice{
+
+        bottom:6%;
+
+        gap:7px;
+
+    }
+
+    .music-title{
+
+        letter-spacing:
+            2px;
+
+    }
+
+    .music-button{
+
+        min-height:39px;
+
+        padding:
+            8px
+            12px;
+
+        letter-spacing:
+            1.5px;
+
+    }
+
+}
+
+
+/* =========================================
+   VERY SHORT SCREENS
+========================================= */
+
+@media(
+    max-height:650px
+){
+
+    .stage{
+
+        width:
+            min(
+                100vw,
+                70.64vh
+            );
+
+    }
 
 }
 
@@ -439,202 +482,176 @@ body{
 <body>
 
 
-<!-- =========================
-     SOBRE
-========================= -->
+<div class="stage">
 
-<div class="cover" id="cover">
+
+    <!-- =================================
+         INVITATION BACKGROUND
+    ================================== -->
+
+    <img
+        class="base"
+        src="emily_james_base_for_animation.png"
+        alt="Emily and James wedding invitation">
+
+
+    <!-- =================================
+         ENVELOPE BODY
+    ================================== -->
+
+    <img
+        class="envelope-body"
+        src="emily_james_envelope_body.png"
+        alt="">
+
+
+    <!-- =================================
+         ENVELOPE FLAP
+    ================================== -->
+
+    <img
+        class="envelope-flap"
+        src="emily_james_flap_animation.png"
+        alt="">
+
+
+    <!-- =================================
+         WAX SEAL
+    ================================== -->
+
+    <img
+        class="seal"
+        id="seal"
+        src="emily_james_seal_animation.png"
+        alt="Open invitation"
+        onclick="openEnvelope()">
+
+
+    <!-- =================================
+         MUSIC OPTIONS
+    ================================== -->
 
     <div
-        class="envelope"
-        id="envelope">
+        class="music-choice"
+        id="musicChoice">
 
 
-        <!-- PAPEL -->
+        <div class="music-title">
 
-        <div class="envelope-paper">
-
-            <div class="paper-names">
-
-                Emily
-                <span>&</span>
-                James
-
-            </div>
-
-
-            <div class="paper-date">
-
-                NOVEMBER 28 • 2026
-
-            </div>
+            HOW WOULD YOU LIKE TO ENTER?
 
         </div>
 
 
-        <!-- FRENTE -->
-
-        <div class="envelope-front"></div>
-
-
-        <!-- SOLAPA -->
-
-        <div class="envelope-flap"></div>
-
-
-        <!-- SELLO -->
-
         <button
-            class="wax-seal"
-            onclick="openEnvelope()">
+            class="music-button"
+            onclick="enterWithMusic()">
 
-            E
-            <span>&</span>
-            J
+            🎵 ENTER WITH MUSIC
 
         </button>
 
 
-        <!-- OPCIONES -->
+        <button
+            class="music-button"
+            onclick="enterWithoutMusic()">
 
-        <div
-            class="music-choice"
-            id="musicChoice">
+            ♡ ENTER WITHOUT MUSIC
 
-            <p>
-                HOW WOULD YOU LIKE TO ENTER?
-            </p>
+        </button>
 
-
-            <button
-                onclick="enterWithMusic()">
-
-                🎵 ENTER WITH MUSIC
-
-            </button>
-
-
-            <button
-                onclick="enterWithoutMusic()">
-
-                ♡ ENTER WITHOUT MUSIC
-
-            </button>
-
-        </div>
 
     </div>
 
-
-    <div class="tap">
-
-        TAP THE SEAL TO OPEN
-
-    </div>
 
 </div>
 
 
-
-<!-- =========================
-     MÚSICA
-========================= -->
+<!-- =====================================
+     MUSIC
+====================================== -->
 
 <audio
     id="music"
-    src="./musica.mp3.mp3"
+    src="musica.mp3.mp3"
     loop>
 </audio>
 
 
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* =====================================
+   ELEMENTS
+====================================== */
 
-const envelope =
-    document.getElementById("envelope");
+const stage =
+    document.querySelector(".stage");
+
+const seal =
+    document.getElementById("seal");
 
 const music =
     document.getElementById("music");
 
-const musicChoice =
-    document.getElementById("musicChoice");
 
-
-/* =========================
-   ABRIR SOBRE
-========================= */
+/* =====================================
+   OPEN ENVELOPE
+====================================== */
 
 function openEnvelope(){
 
-    envelope.classList.add("opening");
-
-    setTimeout(() => {
-
-        musicChoice.style.display = "block";
-
-    }, 700);
+    stage.classList.add("opening");
 
 }
 
 
-/* =========================
-   ENTRAR CON MÚSICA
-========================= */
+/* =====================================
+   ENTER WITH MUSIC
+====================================== */
 
 function enterWithMusic(){
 
-    /*
-       IMPORTANTE:
+    music.play().then(() => {
 
-       El clic del usuario permite
-       iniciar la música.
-    */
+        openCanva();
 
-    music.play().catch(() => {
+    }).catch(() => {
 
-        console.log(
-            "El navegador bloqueó la música."
-        );
+        openCanva();
 
     });
 
-
-    /*
-       Abrimos Canva en una NUEVA pestaña.
-
-       Así esta página permanece abierta
-       y puede seguir reproduciendo la música.
-    */
-
-    window.open(
-        "https://boreal-digital-design.my.canva.site/premium-custom",
-        "_blank"
-    );
-
 }
 
 
-/* =========================
-   ENTRAR SIN MÚSICA
-========================= */
+/* =====================================
+   ENTER WITHOUT MUSIC
+====================================== */
 
 function enterWithoutMusic(){
 
+    openCanva();
+
+}
+
+
+/* =====================================
+   OPEN CANVA
+====================================== */
+
+function openCanva(){
+
     window.open(
+
         "https://boreal-digital-design.my.canva.site/premium-custom",
+
         "_blank"
+
     );
 
 }
+
 
 </script>
 
