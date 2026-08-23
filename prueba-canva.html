@@ -523,6 +523,7 @@ body{
         class="music-choice"
         id="musicChoice">
 
+
         <div class="music-title">
 
             HOW WOULD YOU LIKE TO ENTER?
@@ -546,6 +547,7 @@ body{
             ♡ ENTER WITHOUT MUSIC
 
         </button>
+
 
     </div>
 
@@ -594,15 +596,17 @@ function openEnvelope(){
 
 function enterWithMusic(){
 
-    music.play().then(() => {
+    music.play()
+        .then(() => {
 
-        openCanva();
+            openCanva();
 
-    }).catch(() => {
+        })
+        .catch(() => {
 
-        openCanva();
+            openCanva();
 
-    });
+        });
 
 }
 
