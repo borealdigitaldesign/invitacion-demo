@@ -10,7 +10,6 @@
 
 <title>Emily & James</title>
 
-
 <style>
 
 /* =========================================
@@ -72,7 +71,7 @@ body{
 
 
 /* =========================================
-   BASE / BACKGROUND
+   BASE IMAGE
 ========================================= */
 
 .base{
@@ -87,31 +86,6 @@ body{
     object-fit:contain;
 
     z-index:1;
-
-}
-
-
-/* =========================================
-   INNER INVITATION CARD
-========================================= */
-
-.inner-card{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    z-index:2;
-
-    opacity:0;
-
-    transition:
-        opacity 1s ease 0.8s;
 
 }
 
@@ -197,6 +171,15 @@ body{
 
         transform .6s ease;
 
+}
+
+
+/* =========================================
+   LITTLE PULSE ON SEAL
+========================================= */
+
+.seal{
+
     animation:
         sealPulse 2.2s
         ease-in-out
@@ -204,10 +187,6 @@ body{
 
 }
 
-
-/* =========================================
-   SEAL PULSE
-========================================= */
 
 @keyframes sealPulse{
 
@@ -256,21 +235,10 @@ body{
 
 
 /* =========================================
-   SHOW INNER INVITATION
+   OPEN INVITATION BUTTON
 ========================================= */
 
-.opening .inner-card{
-
-    opacity:1;
-
-}
-
-
-/* =========================================
-   MUSIC CHOICES
-========================================= */
-
-.music-choice{
+.invitation-button{
 
     position:absolute;
 
@@ -284,11 +252,9 @@ body{
 
     display:flex;
 
-    flex-direction:column;
+    justify-content:center;
 
     align-items:center;
-
-    gap:9px;
 
     opacity:0;
 
@@ -299,14 +265,14 @@ body{
 
     transition:
 
-        opacity .7s ease 1s,
+        opacity .7s ease .8s,
 
-        transform .7s ease 1s;
+        transform .7s ease .8s;
 
 }
 
 
-.opening .music-choice{
+.opening .invitation-button{
 
     opacity:1;
 
@@ -319,35 +285,10 @@ body{
 
 
 /* =========================================
-   MUSIC TITLE
+   BUTTON
 ========================================= */
 
-.music-title{
-
-    font-size:
-        clamp(
-            9px,
-            1.55vw,
-            15px
-        );
-
-    letter-spacing:
-        3px;
-
-    color:#68483a;
-
-    text-align:center;
-
-    margin-bottom:2px;
-
-}
-
-
-/* =========================================
-   MUSIC BUTTON
-========================================= */
-
-.music-button{
+.invitation-button button{
 
     width:100%;
 
@@ -411,7 +352,7 @@ body{
 }
 
 
-.music-button:hover{
+.invitation-button button:hover{
 
     transform:
         translateY(-2px);
@@ -423,15 +364,15 @@ body{
         0 9px 20px
         rgba(
             80,
-            50px,
-            40px,
+            50,
+            40,
             .18
         );
 
 }
 
 
-.music-button:active{
+.invitation-button button:active{
 
     transform:
         scale(.98);
@@ -463,22 +404,13 @@ body{
 
     }
 
-    .music-choice{
+    .invitation-button{
 
         bottom:6%;
 
-        gap:7px;
-
     }
 
-    .music-title{
-
-        letter-spacing:
-            2px;
-
-    }
-
-    .music-button{
+    .invitation-button button{
 
         min-height:39px;
 
@@ -526,23 +458,13 @@ body{
 
 
     <!-- =================================
-         BASE
+         INVITATION BACKGROUND
     ================================== -->
 
     <img
         class="base"
         src="emily_james_base_for_animation.png"
-        alt="">
-
-
-    <!-- =================================
-         INNER INVITATION
-    ================================== -->
-
-   <img
-    class="inner-card"
-    src="emily_james_invitation_card.png"
-    alt="">
+        alt="Emily and James wedding invitation">
 
 
     <!-- =================================
@@ -578,38 +500,19 @@ body{
 
 
     <!-- =================================
-         MUSIC OPTIONS
+         OPEN INVITATION BUTTON
     ================================== -->
 
     <div
-        class="music-choice"
-        id="musicChoice">
-
-
-        <div class="music-title">
-
-            HOW WOULD YOU LIKE TO ENTER?
-
-        </div>
-
+        class="invitation-button"
+        id="invitationButton">
 
         <button
-            class="music-button"
-            onclick="enterWithMusic()">
+            onclick="openInvitation()">
 
-            🎵 ENTER WITH MUSIC
-
-        </button>
-
-
-        <button
-            class="music-button"
-            onclick="enterWithoutMusic()">
-
-            ♡ ENTER WITHOUT MUSIC
+            OPEN OUR INVITATION
 
         </button>
-
 
     </div>
 
@@ -633,7 +536,7 @@ body{
 
 /* =====================================
    ELEMENTS
-===================================== */
+====================================== */
 
 const stage =
     document.querySelector(".stage");
@@ -647,7 +550,7 @@ const music =
 
 /* =====================================
    OPEN ENVELOPE
-===================================== */
+====================================== */
 
 function openEnvelope(){
 
@@ -657,34 +560,27 @@ function openEnvelope(){
 
 
 /* =====================================
-   ENTER WITH MUSIC
-===================================== */
+   OPEN INVITATION
+====================================== */
 
-function enterWithMusic(){
+function openInvitation(){
 
-    music.play();
+    /*
+       Start music when the guest
+       clicks the invitation button.
+    */
 
-    openCanva();
+    music.play().catch(() => {
 
-}
+        // If the browser blocks the music,
+        // the invitation still opens.
 
-
-/* =====================================
-   ENTER WITHOUT MUSIC
-===================================== */
-
-function enterWithoutMusic(){
-
-    openCanva();
-
-}
+    });
 
 
-/* =====================================
-   OPEN CANVA
-===================================== */
-
-function openCanva(){
+    /*
+       Open the Canva invitation.
+    */
 
     window.open(
 
