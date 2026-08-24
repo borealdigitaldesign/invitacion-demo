@@ -91,6 +91,26 @@ body{
 
 
 /* =========================================
+   INTERIOR INVITATION CARD
+========================================= */
+
+.invitation-card{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+}
+
+
+/* =========================================
    ENVELOPE BODY
 ========================================= */
 
@@ -246,7 +266,9 @@ body{
 
     width:84%;
 
-    bottom:6.2%;
+    /* SUBIDO APROX. 1 CM */
+
+    bottom:7.5%;
 
     z-index:20;
 
@@ -406,7 +428,7 @@ body{
 
     .invitation-button{
 
-        bottom:6%;
+        bottom:7.5%;
 
     }
 
@@ -464,6 +486,16 @@ body{
     <img
         class="base"
         src="emily_james_base_for_animation.png"
+        alt="Emily and James wedding invitation">
+
+
+    <!-- =================================
+         INTERIOR INVITATION CARD
+    ================================== -->
+
+    <img
+        class="invitation-card"
+        src="emily_james_invitation_card.png"
         alt="Emily and James wedding invitation">
 
 
@@ -566,8 +598,8 @@ function openEnvelope(){
 function openInvitation(){
 
     /*
-       Start music when the guest
-       clicks the invitation button.
+       Music starts because the guest
+       clicked the button.
     */
 
     music.play().catch(() => {
