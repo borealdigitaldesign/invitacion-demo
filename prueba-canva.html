@@ -43,8 +43,7 @@ body{
 
     overflow:hidden;
 
-    font-family:
-        Georgia,
+    font-family:Georgia,
         "Times New Roman",
         serif;
 
@@ -73,7 +72,7 @@ body{
 
 
 /* =========================================
-   BASE IMAGE
+   BASE / BACKGROUND
 ========================================= */
 
 .base{
@@ -83,12 +82,36 @@ body{
     inset:0;
 
     width:100%;
-
     height:100%;
 
     object-fit:contain;
 
     z-index:1;
+
+}
+
+
+/* =========================================
+   INNER INVITATION CARD
+========================================= */
+
+.inner-card{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    opacity:0;
+
+    transition:
+        opacity 1s ease 0.8s;
 
 }
 
@@ -104,7 +127,6 @@ body{
     inset:0;
 
     width:100%;
-
     height:100%;
 
     object-fit:contain;
@@ -125,7 +147,6 @@ body{
     inset:0;
 
     width:100%;
-
     height:100%;
 
     object-fit:contain;
@@ -159,11 +180,9 @@ body{
     position:absolute;
 
     left:0;
-
     top:0;
 
     width:100%;
-
     height:100%;
 
     object-fit:contain;
@@ -173,7 +192,9 @@ body{
     cursor:pointer;
 
     transition:
+
         opacity .5s ease,
+
         transform .6s ease;
 
     animation:
@@ -235,6 +256,17 @@ body{
 
 
 /* =========================================
+   SHOW INNER INVITATION
+========================================= */
+
+.opening .inner-card{
+
+    opacity:1;
+
+}
+
+
+/* =========================================
    MUSIC CHOICES
 ========================================= */
 
@@ -266,8 +298,10 @@ body{
     pointer-events:none;
 
     transition:
-        opacity .7s ease .8s,
-        transform .7s ease .8s;
+
+        opacity .7s ease 1s,
+
+        transform .7s ease 1s;
 
 }
 
@@ -285,7 +319,7 @@ body{
 
 
 /* =========================================
-   TITLE
+   MUSIC TITLE
 ========================================= */
 
 .music-title{
@@ -310,7 +344,7 @@ body{
 
 
 /* =========================================
-   BUTTONS
+   MUSIC BUTTON
 ========================================= */
 
 .music-button{
@@ -341,8 +375,7 @@ body{
 
     color:#68483a;
 
-    font-family:
-        Georgia,
+    font-family:Georgia,
         "Times New Roman",
         serif;
 
@@ -368,8 +401,11 @@ body{
         );
 
     transition:
+
         transform .2s ease,
+
         background .2s ease,
+
         box-shadow .2s ease;
 
 }
@@ -387,8 +423,8 @@ body{
         0 9px 20px
         rgba(
             80,
-            50,
-            40,
+            50px,
+            40px,
             .18
         );
 
@@ -490,13 +526,23 @@ body{
 
 
     <!-- =================================
-         INVITATION BACKGROUND
+         BASE
     ================================== -->
 
     <img
         class="base"
         src="emily_james_base_for_animation.png"
-        alt="Emily and James wedding invitation">
+        alt="">
+
+
+    <!-- =================================
+         INNER INVITATION
+    ================================== -->
+
+   <img
+    class="inner-card"
+    src="emily_james_invitation_card.png"
+    alt="">
 
 
     <!-- =================================
@@ -587,7 +633,7 @@ body{
 
 /* =====================================
    ELEMENTS
-====================================== */
+===================================== */
 
 const stage =
     document.querySelector(".stage");
@@ -601,7 +647,7 @@ const music =
 
 /* =====================================
    OPEN ENVELOPE
-====================================== */
+===================================== */
 
 function openEnvelope(){
 
@@ -612,28 +658,20 @@ function openEnvelope(){
 
 /* =====================================
    ENTER WITH MUSIC
-====================================== */
+===================================== */
 
 function enterWithMusic(){
 
-    music.play()
-        .then(() => {
+    music.play();
 
-            openCanva();
-
-        })
-        .catch(() => {
-
-            openCanva();
-
-        });
+    openCanva();
 
 }
 
 
 /* =====================================
    ENTER WITHOUT MUSIC
-====================================== */
+===================================== */
 
 function enterWithoutMusic(){
 
@@ -644,7 +682,7 @@ function enterWithoutMusic(){
 
 /* =====================================
    OPEN CANVA
-====================================== */
+===================================== */
 
 function openCanva(){
 
